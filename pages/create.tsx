@@ -57,13 +57,13 @@ const CreatePage: NextPage = () => {
           <label htmlFor="message">Mensaje</label>
           <textarea
             {...register('message', { required: true })}
-            className="h-24"
+            className="h-28"
           />
         </div>
         <Dropzone setValue={setValue} />
         <button
           type="submit"
-          className="rounded-lg bg-blue-500 py-2 px-3 text-white"
+          className="rounded-lg bg-primary py-2 px-3 text-white"
         >
           Crear
         </button>

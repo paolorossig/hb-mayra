@@ -11,6 +11,6 @@
   [multiple],
   textarea,
   select {
-    @apply rounded-lg border-0 focus:ring-2 focus:ring-blue-500;
+    @apply rounded-lg border-0 focus:ring-2 focus:ring-primary;
   }
 }

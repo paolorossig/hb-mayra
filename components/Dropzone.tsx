@@ -23,13 +23,13 @@ const PreviewImages = ({ files, onRemove }: PreviewImageProps) => {
   return (
     <ul
       className={clsx(
-        'flex flex-wrap justify-center gap-4',
+        'my-4 flex gap-4 overflow-x-auto',
         !files.length && 'hidden'
       )}
     >
       {files.map((file) => (
         <li key={file.preview} className="grid place-content-center text-white">
-          <picture className="group relative overflow-hidden rounded-lg">
+          <picture className="group relative h-64 w-64 overflow-hidden rounded-lg">
             <div className="absolute top-0 z-10 hidden h-full w-full flex-col items-center bg-black/40 text-white opacity-100 group-hover:flex">
               <button
                 onClick={() => onRemove(file.name)}
@@ -44,11 +44,11 @@ const PreviewImages = ({ files, onRemove }: PreviewImageProps) => {
             <Image
               src={file.preview}
               alt={file.name}
-              width={220}
-              height={220}
+              fill
               onLoad={() => {
                 URL.revokeObjectURL(file.preview)
               }}
+              className="object-cover"
             />
           </picture>
         </li>
@@ -87,14 +87,14 @@ const Dropzone = ({ setValue, maxFiles = 3 }: DropzoneProps) => {
       <div
         {...getRootProps()}
         className={clsx(
-          'group flex w-full cursor-pointer flex-col items-center justify-center rounded-lg bg-white',
-          'focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-90',
-          isDragActive && 'ring ring-blue-500 ring-opacity-90',
+          'group my-4 flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg bg-white',
+          'focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-90',
+          isDragActive && 'ring ring-primary ring-opacity-90',
           files.length > 0 && 'hidden'
         )}
       >
         <input {...getInputProps()} />
-        <div className="flex flex-col items-center justify-center py-10 text-gray-500">
+        <div className="flex flex-col items-center justify-center text-gray-500">
           <UploadIcon className="mb-3 h-6 w-6 animate-ping" />
           <p className="mb-1 max-w-[15ch] text-center text-sm">
             Sube hasta

@@ -6,6 +6,7 @@ import { fetcher } from '@lib/utils'
 
 import Card from '@components/Card'
 import Layout from '@components/Layout'
+import Spinner from '@components/Spinner'
 import PlusIcon from '@components/icons/PlusIcon'
 
 const Home: NextPage = () => {
@@ -18,9 +19,7 @@ const Home: NextPage = () => {
           <p className="text-2xl">An error has occurred.</p>
         </div>
       ) : !data ? (
-        <div className="text-center">
-          <p className="text-2xl">Loading...</p>
-        </div>
+        <Spinner />
       ) : (
         data.map((post) => <Card key={post.id} post={post} />)
       )}
@@ -28,7 +27,7 @@ const Home: NextPage = () => {
       <div className="absolute right-0 bottom-2">
         <Link
           href="/create"
-          className="grid h-12 w-12 place-content-center rounded-full bg-blue-500 text-white hover:cursor-pointer"
+          className="grid h-12 w-12 place-content-center rounded-full bg-primary text-white hover:cursor-pointer"
         >
           <PlusIcon className="h-8 w-8" />
         </Link>

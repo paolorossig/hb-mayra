@@ -7,7 +7,7 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="flex min-h-screen bg-sky-200 text-gray-900">
+    <div className="flex min-h-screen bg-secondary text-gray-900">
       <Head>
         <title>Mayra Fest</title>
         <meta
@@ -18,7 +18,10 @@ const Layout = ({ children }: LayoutProps) => {
       </Head>
       <div className="mx-auto flex w-full max-w-sm flex-1 flex-col">
         <header className="flex py-4">
-          <Link href="/" className="mx-auto text-2xl font-bold uppercase">
+          <Link
+            href="/"
+            className="mx-auto text-4xl font-bold uppercase text-primary"
+          >
             Mayra Fest
           </Link>
         </header>
