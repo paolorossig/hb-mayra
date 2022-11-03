@@ -1,7 +1,9 @@
 import type { NextPage } from 'next'
+import { useRouter } from 'next/router'
+import { useForm } from 'react-hook-form'
+
 import Layout from '@components/Layout'
 import Dropzone from '@components/Dropzone'
-import { useForm } from 'react-hook-form'
 
 interface FormValues {
   name: string
@@ -10,14 +12,30 @@ interface FormValues {
 }
 
 const CreatePage: NextPage = () => {
+  const router = useRouter()
   const { register, handleSubmit, setValue } = useForm<FormValues>()
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
     if (!data?.images?.length) {
       return alert('Debes seleccionar al menos una imagen')
     }
 
-    console.log(data)
+    const formData = new FormData()
+    const keys = Object.keys(data) as Array<keyof FormValues>
+
+    keys.forEach((key) => key !== 'images' && formData.append(key, data[key]))
+    Array.from(data.images).forEach((image) => formData.append('images', image))
+
+    const response = await fetch('/api/post', {
+      method: 'POST',
+      body: formData,
+    })
+
+    if (!response.ok) {
+      return alert('Ha ocurrido un error. Vuelve a intentarlo')
+    }
+
+    return router.push('/')
   }
 
   return (
