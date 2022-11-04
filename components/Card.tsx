@@ -14,7 +14,7 @@ const Card = ({ post }: { post: Post }) => {
       </figure>
       <div className="flex flex-col py-2">
         <h2 className="text-xl font-semibold text-gray-800">{post.name}</h2>
-        <p className="mt-2 text-sm text-gray-600">{post.message}</p>
+        <p className="mt-2 w-[30ch] text-sm text-gray-600">{post.message}</p>
       </div>
     </article>
   )

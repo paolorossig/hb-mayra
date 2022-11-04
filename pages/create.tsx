@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 
 import Layout from '@components/Layout'
+import Spinner from '@components/Spinner'
 import Dropzone from '@components/Dropzone'
 
 interface FormValues {
@@ -13,7 +14,8 @@ interface FormValues {
 
 const CreatePage: NextPage = () => {
   const router = useRouter()
-  const { register, handleSubmit, setValue } = useForm<FormValues>()
+  const { register, handleSubmit, setValue, formState } = useForm<FormValues>()
+  const { isSubmitting } = formState
 
   const onSubmit = async (data: FormValues) => {
     if (!data?.images?.length) {
@@ -50,23 +52,31 @@ const CreatePage: NextPage = () => {
           <input
             type="text"
             autoComplete="off"
+            disabled={isSubmitting}
             {...register('name', { required: true })}
           />
         </div>
         <div className="flex flex-col">
           <label htmlFor="message">Mensaje</label>
           <textarea
+            disabled={isSubmitting}
             {...register('message', { required: true })}
             className="h-28"
           />
         </div>
         <Dropzone setValue={setValue} />
-        <button
-          type="submit"
-          className="rounded-lg bg-primary py-2 px-3 text-white"
-        >
-          Crear
-        </button>
+        {isSubmitting ? (
+          <div className="flex justify-center">
+            <Spinner />
+          </div>
+        ) : (
+          <button
+            type="submit"
+            className="rounded-lg bg-primary py-2 px-3 text-white"
+          >
+            Crear
+          </button>
+        )}
       </form>
     </Layout>
   )
