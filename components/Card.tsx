@@ -4,7 +4,7 @@ import Image from 'next/image'
 const Card = ({ post }: { post: Post }) => {
   return (
     <article className="block rounded-xl bg-white p-4 shadow-md transition duration-300 hover:shadow-lg">
-      <figure className="relative h-56 w-56">
+      <figure className="relative h-80 w-72">
         <Image
           src={post.images[0]}
           alt={post.name}

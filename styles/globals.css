@@ -14,3 +14,11 @@
     @apply rounded-lg border-0 focus:ring-2 focus:ring-primary;
   }
 }
+
+@layer utilities {
+  @supports (-webkit-touch-callout: none) {
+    .min-h-screen {
+      min-height: -webkit-fill-available;
+    }
+  }
+}

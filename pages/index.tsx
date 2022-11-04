@@ -21,10 +21,14 @@ const Home: NextPage = () => {
       ) : !data ? (
         <Spinner />
       ) : (
-        data.map((post) => <Card key={post.id} post={post} />)
+        <section className="flex flex-col gap-4">
+          {data.map((post) => (
+            <Card key={post.id} post={post} />
+          ))}
+        </section>
       )}
 
-      <div className="absolute right-0 bottom-2">
+      <div className="sticky bottom-2 z-10 flex w-full justify-end">
         <Link
           href="/create"
           className="grid h-12 w-12 place-content-center rounded-full bg-primary text-white hover:cursor-pointer"
